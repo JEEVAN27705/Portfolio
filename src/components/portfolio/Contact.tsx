@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { z } from "zod";
-import { Github, Linkedin, Mail, Send, MapPin } from "lucide-react";
+import { Github, Linkedin, Send, Mail, MapPin, Phone } from "lucide-react";
 import { Section } from "./Section";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -52,17 +52,40 @@ export const Contact = () => {
         >
           <div className="glass rounded-2xl p-6 card-shadow">
             <h3 className="font-semibold text-lg mb-4">Reach me directly</h3>
+
             <div className="space-y-3 mb-6">
+
+              {/* Email */}
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:hello@example.com" className="hover:text-primary transition-colors">
+                <a
+                  href="mailto:patiljeevan800@gmail.com"
+                  className="hover:text-primary transition-colors"
+                >
                   patiljeevan800@gmail.com
                 </a>
               </div>
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <MapPin className="h-4 w-4 text-primary" /> India
+
+              {/* Phone */}
+              <div className="flex items-center gap-3 text-sm">
+                <Phone className="h-4 w-4 text-primary" />
+                <a
+                  href="tel:+919373617934"
+                  className="hover:text-primary transition-colors"
+                >
+                  +91 7276605175
+                </a>
               </div>
+
+              {/* Location */}
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4 text-primary" />
+                Pune, Maharashtra, India
+              </div>
+
             </div>
+
+            {/* Social Icons */}
             <div className="flex gap-2">
               {socials.map((s) => (
                 <a
@@ -80,10 +103,10 @@ export const Contact = () => {
           </div>
 
           <div className="glass rounded-2xl p-6 card-shadow">
-            <p className="font-mono text-sm text-muted-foreground mb-1">// status</p>
+            <p className="font-mono text-sm text-muted-foreground mb-1">// Current status</p>
             <p className="text-sm">
               <span className="inline-block w-2 h-2 rounded-full bg-secondary mr-2 animate-pulse" />
-              Open to internships & collaborations.
+              Open for website & android development and testing internships & collaborations.
             </p>
           </div>
         </motion.div>
