@@ -1,8 +1,11 @@
-const fetch = require("node-fetch");
-
-exports.handler = async (event) => {
+// Native fetch is available in Node.js 18+ and Netlify functions
+export const handler = async (event) => {
   try {
     const { name, email, message } = JSON.parse(event.body);
+
+    if (!process.env.BREVO_API_KEY) {
+      throw new Error("BREVO_API_KEY is not defined in environment variables");
+    }
 
     const response = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
@@ -31,7 +34,9 @@ exports.handler = async (event) => {
     });
 
     if (!response.ok) {
-      throw new Error("Brevo API failed");
+      const errorData = await response.json().catch(() => ({}));
+      console.error("Brevo Error:", errorData);
+      throw new Error(errorData.message || "Brevo API failed");
     }
 
     return {

@@ -37,7 +37,9 @@ export const Contact = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("/.netlify/functions/send-email", {
+      const url = "/.netlify/functions/send-email";
+      console.log(`Fetching from: ${window.location.origin}${url}`);
+      const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +47,14 @@ export const Contact = () => {
         body: JSON.stringify(form),
       });
 
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (e) {
+        console.error("Failed to parse JSON response:", e);
+        toast.error(`Server error: ${res.status} ${res.statusText}`);
+        return;
+      }
 
       if (res.ok) {
         toast.success("Message sent successfully!");
@@ -54,7 +63,8 @@ export const Contact = () => {
         toast.error(data.error || "Failed to send message");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      console.error("Submission error:", error);
+      toast.error("Something went wrong. Please check your connection.");
     } finally {
       setLoading(false);
     }
