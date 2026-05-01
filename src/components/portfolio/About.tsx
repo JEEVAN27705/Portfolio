@@ -64,36 +64,36 @@ export const About = () => (
         className="glass rounded-3xl p-8 card-shadow"
       >
         <p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-4">
-  I'm a Computer Engineering student with a deep love for crafting software that
-  actually matters. From AI-powered systems that fight online abuse, to immersive
-  virtual experiences in Unity — I enjoy taking ideas across the full journey from
-  concept to deployment.
-</p>
+          I'm a Computer Engineering student with a deep love for crafting software that
+          actually matters. From AI-powered systems that fight online abuse, to immersive
+          virtual experiences in Unity — I enjoy taking ideas across the full journey from
+          concept to deployment.
+        </p>
 
-<p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-4">
-  I am a motivated and detail-oriented developer with practical experience in both
-  software development and software testing. I have a strong foundation in programming,
-  web technologies, and quality assurance practices, with hands-on exposure to building
-  real-world applications and testing production platforms.I am passionate about delivering 
-  high-quality, reliable software solutions along with testing that create real-world impact.
-</p>
+        <p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-4">
+          I am a motivated and detail-oriented developer with practical experience in both
+          software development and software testing. I have a strong foundation in programming,
+          web technologies, and quality assurance practices, with hands-on exposure to building
+          real-world applications and testing production platforms.I am passionate about delivering
+          high-quality, reliable software solutions along with testing that create real-world impact.
+        </p>
 
-<p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-4">
-  My experience includes manual testing, test case design, bug reporting, and regression
-  testing, along with developing full-stack and machine learning–enabled applications.
-  I am proficient in Python, Java, SQL, and modern web technologies, and have working
-  knowledge of automation and API testing using Selenium WebDriver and Postman. I also have
-  an industry expirence in manual testing.
-  </p>
+        <p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-4">
+          My experience includes manual testing, test case design, bug reporting, and regression
+          testing, along with developing full-stack and machine learning–enabled applications.
+          I am proficient in Python, Java, SQL, and modern web technologies, and have working
+          knowledge of automation and API testing using Selenium WebDriver and Postman. I also have
+          an industry expirence in manual testing.
+        </p>
 
-<p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-4">
+        <p className="text-base md:text-lg leading-relaxed text-foreground/90 mb-4">
 
-  I’m comfortable collaborating with cross-functional teams using tools like Jira and Git,
-  and I enjoy contributing across the software lifecycle—from development to validation—
-  to deliver reliable and scalable solutions. My goal is to keep growing as a developer
-  who bridges intelligent backends with beautiful interfaces and builds meaningful,
-  human-centered technology.
-</p>
+          I’m comfortable collaborating with cross-functional teams using tools like Jira and Git,
+          and I enjoy contributing across the software lifecycle—from development to validation—
+          to deliver reliable and scalable solutions. My goal is to keep growing as a developer
+          who bridges intelligent backends with beautiful interfaces and builds meaningful,
+          human-centered technology.
+        </p>
 
       </motion.div>
 
