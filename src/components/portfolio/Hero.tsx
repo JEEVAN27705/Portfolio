@@ -113,7 +113,7 @@ export const Hero = () => {
               variant="ghost"
               className="rounded-full text-base px-7 h-12"
             >
-              <a href="/Resume–JeevanPatil.pdf" target="_blank">
+              <a href="/Resume-JeevanPatil.pdf" target="_blank">
                 <Download className="mr-2 h-4 w-4"/> Resume
               </a>
             </Button>
