@@ -25,7 +25,7 @@ export const Resume = () => (
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="rounded-full px-7 h-12 bg-gradient-to-r from-primary to-accent border-0 glow-shadow">
-              <a href="public/Resume-JeevanPatil.pdf" download="Resume-JeevanPatil.pdf">
+              <a href="/Resume-JeevanPatil.pdf" download="Resume-JeevanPatil.pdf">
                 <Download className="mr-2 h-4 w-4"/> Download Resume
               </a>
             </Button>
