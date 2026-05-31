@@ -16,68 +16,60 @@ const schema = z.object({
 });
 
 const socials = [
-  { icon: Github, label: "GitHub", href: "https://github.com/JEEVAN27705" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-  { icon: Mail, label: "Email", href: "mailto:patiljeevan800@gmail.com" },
+  {
+    icon: Github,
+    label: "GitHub",
+    href: "https://github.com/JEEVAN27705",
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/your-linkedin-profile",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    href: "mailto:patiljeevan800@gmail.com",
+  },
 ];
 
 export const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const result = schema.safeParse(form);
+
     if (!result.success) {
       toast.error(result.error.issues[0].message);
       return;
     }
 
-    setLoading(true);
+    toast.info(
+      "Email service backend is currently under development. Will be available soon!"
+    );
 
-    try {
-      // Use the relative path for Netlify functions
-      const url = "/.netlify/functions/send-email";
-      
-      const res = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-
-      let data;
-      const contentType = res.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
-        data = await res.json();
-      } else {
-        const text = await res.text();
-        console.error("Non-JSON response:", text);
-        throw new Error(`Server returned ${res.status}: ${res.statusText}`);
-      }
-
-      if (res.ok && data.success) {
-        toast.success("Message sent successfully!");
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        const errorMessage = data.error || data.message || "Failed to send message";
-        toast.error(errorMessage);
-        console.error("Submission failed:", data);
-      }
-    } catch (error: any) {
-      console.error("Submission error:", error);
-      toast.error(error.message || "Something went wrong. Please check your connection.");
-    } finally {
-      setLoading(false);
-    }
-
+    setForm({
+      name: "",
+      email: "",
+      message: "",
+    });
   };
 
   return (
-    <Section id="contact" eyebrow="Contact Me " title="Let's build something" subtitle="Have an idea, opportunity, or just want to say hi? My inbox is open.">
+    <Section
+      id="contact"
+      eyebrow="Contact Me"
+      title="Let's Build Something"
+      subtitle="Have an idea, opportunity, or just want to say hi? My inbox is always open."
+    >
       <div className="grid lg:grid-cols-5 gap-8">
+        {/* Left Side */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -86,10 +78,11 @@ export const Contact = () => {
           className="lg:col-span-2 space-y-4"
         >
           <div className="glass rounded-2xl p-6 card-shadow">
-            <h3 className="font-semibold text-lg mb-4">Reach me directly</h3>
+            <h3 className="font-semibold text-lg mb-4">
+              Reach Me Directly
+            </h3>
 
-            <div className="space-y-3 mb-6">
-
+            <div className="space-y-4 mb-6">
               {/* Email */}
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="h-4 w-4 text-primary" />
@@ -115,37 +108,43 @@ export const Contact = () => {
               {/* Location */}
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 text-primary" />
-                Pune, Maharashtra, India
+                <span>Pune, Maharashtra, India</span>
               </div>
-
             </div>
 
-            {/* Social Icons */}
-            <div className="flex gap-2">
-              {socials.map((s) => (
+            {/* Social Links */}
+            <div className="flex gap-3">
+              {socials.map((social) => (
                 <a
-                  key={s.label}
-                  href={s.href}
+                  key={social.label}
+                  href={social.href}
                   target="_blank"
-                  rel="noreferrer"
-                  aria-label={s.label}
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
                   className="w-11 h-11 rounded-xl glass flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-110 transition-all"
                 >
-                  <s.icon className="h-5 w-5" />
+                  <social.icon className="h-5 w-5" />
                 </a>
               ))}
             </div>
           </div>
 
+          {/* Status Card */}
           <div className="glass rounded-2xl p-6 card-shadow">
-            <p className="font-mono text-sm text-muted-foreground mb-1">// Current status</p>
+            <p className="font-mono text-sm text-muted-foreground mb-1">
+              // Current Status
+            </p>
+
             <p className="text-sm">
-              <span className="inline-block w-2 h-2 rounded-full bg-secondary mr-2 animate-pulse" />
-              Open for website & android development and testing internships & collaborations.
+              <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse" />
+              Open for Website Development, Android Development,
+              QA Testing Internships, Freelance Projects, and
+              Collaborations.
             </p>
           </div>
         </motion.div>
 
+        {/* Contact Form */}
         <motion.form
           onSubmit={onSubmit}
           initial={{ opacity: 0, x: 30 }}
@@ -159,43 +158,52 @@ export const Contact = () => {
             <Input
               id="name"
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, name: e.target.value })
+              }
               placeholder="Jeevan Patil"
               maxLength={100}
               className="mt-2 h-12 rounded-xl bg-background/50"
             />
           </div>
+
           <div>
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              placeholder="patiljeevan800@gmail.com"
+              onChange={(e) =>
+                setForm({ ...form, email: e.target.value })
+              }
+              placeholder="your@email.com"
               maxLength={255}
               className="mt-2 h-12 rounded-xl bg-background/50"
             />
           </div>
+
           <div>
             <Label htmlFor="message">Message</Label>
             <Textarea
               id="message"
               value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, message: e.target.value })
+              }
               placeholder="Tell me about your project or idea..."
               rows={5}
               maxLength={1000}
               className="mt-2 rounded-xl bg-background/50 resize-none"
             />
           </div>
+
           <Button
             type="submit"
             size="lg"
-            disabled={loading}
             className="w-full rounded-xl h-12 bg-gradient-to-r from-primary to-accent border-0 glow-shadow"
           >
-            {loading ? "Sending..." : <>Send Message <Send className="ml-2 h-4 w-4" /></>}
+            Send Message
+            <Send className="ml-2 h-4 w-4" />
           </Button>
         </motion.form>
       </div>
