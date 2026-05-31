@@ -41,6 +41,24 @@ const projects = [
     demo: "https://virtualswaraj.netlify.app/",
     image: "/projects/virtual_fort_tour_1777408521932.png",
   },
+  {
+    title: "Payroll Management System",
+    desc:"Developed a web-based payroll management system to automate salary calculation, attendance tracking, and employee data management",
+    tech: ["Html",'CSS', 'Javascript','PHP', 'XAMMP'],
+    category: "Web",
+    github: "#",
+    demo: "#",
+    image: "#",
+  },
+  {
+    title: "Student Management System",
+    desc: "Built a console-based application to store, search, update, and manage student records using C++ and object-oriented programming concepts",
+    tech: ["Html",'CSS', 'Javascript','C++', 'MySql'],
+    category: "Web",
+    github: "https://github.com/JEEVAN27705/LP_2.git",
+    demo: "/in-development",
+    image: "#",
+  }
 ];
 
 const filters = ["All", "AI", "Android", "Web"] as const;
