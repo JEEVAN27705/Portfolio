@@ -24,7 +24,7 @@ const socials = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://linkedin.com/in/your-linkedin-profile",
+    href: "https://www.linkedin.com/in/jeevan-patil-23a789320/",
   },
   {
     icon: Mail,
