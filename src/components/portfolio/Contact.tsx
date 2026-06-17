@@ -39,6 +39,7 @@ export const Contact = () => {
     email: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,43 +53,10 @@ export const Contact = () => {
 
     setLoading(true);
 
-    try {
-      // Use the relative path for Netlify functions
-      const url = "/.netlify/functions/send-email";
-
-      const res = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-
-      let data;
-      const contentType = res.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
-        data = await res.json();
-      } else {
-        const text = await res.text();
-        console.error("Non-JSON response:", text);
-        throw new Error(`Server returned ${res.status}: ${res.statusText}`);
-      }
-
-      if (res.ok && data.success) {
-        toast.success("Message sent successfully!");
-        setForm({ name: "", email: "", message: "" });
-      } else {
-        const errorMessage = data.error || data.message || "Failed to send message";
-        toast.error(errorMessage);
-        console.error("Submission failed:", data);
-      }
-    } catch (error: any) {
-      console.error("Submission error:", error);
-      toast.error(error.message || "Something went wrong. Please check your connection.");
-    } finally {
+    setTimeout(() => {
+      toast.error("Email service is currently not available.");
       setLoading(false);
-    }
-
+    }, 800);
   };
 
   return (
@@ -230,10 +198,11 @@ export const Contact = () => {
           <Button
             type="submit"
             size="lg"
+            disabled={loading}
             className="w-full rounded-xl h-12 bg-gradient-to-r from-primary to-accent border-0 glow-shadow"
           >
-            Send Message
-            <Send className="ml-2 h-4 w-4" />
+            {loading ? "Sending..." : "Send Message"}
+            {!loading && <Send className="ml-2 h-4 w-4" />}
           </Button>
         </motion.form>
       </div>
